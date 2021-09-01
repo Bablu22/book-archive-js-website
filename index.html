@@ -12,14 +12,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <!-- custom css link -->
-    <link rel="stylesheet" href="style.css">
+    <!-- custom css -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Oswald', sans-serif;
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Bangladsh</h1>
+    <h1 class="text-center my-3 bg-danger text-white m-5 rounded py-1">Welcome to Open Library</h1>
 
+    <div class="container bg-light">
+        <!-- Input search and button -->
+        <div class="input-group mb-3 py-3">
+            <input type="text" class="form-control fs-5" placeholder="secrch your book"
+                aria-label="Recipient's username" aria-describedby="button" id="search-feild">
+            <button class="btn btn-outline-secondary px-5" type="button" id="button">Search</button>
+        </div>
+
+        <!-- Book Details area -->
+        <div class="card mb-3 mx-auto d-none" style="max-width: 540px;" id="detail-container">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- search result number show -->
+        <h2 id="search-result">
+            
+        
+        
+        </h2>
+
+        <!-- Book  -->
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-3" id="book-container">
+
+        </div>
+
+    </div>
 
 
 

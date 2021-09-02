@@ -38,6 +38,7 @@ const showBook = (books) => {
     if (numFound === 0) {
         errorText.classList.remove('d-none');
         errorText.innerText = 'search result not found'
+        searchResult.style.display = "none";
         return
     }
     else {

@@ -10,7 +10,7 @@ button.addEventListener('click', searchBook = () => {
     const searchText = inputFeild.value;
     inputFeild.value = ''
     if (searchText === '') {
-        errorText.innerText = 'Input Feild can not empty'
+        errorText.innerText = 'Input Feild can not be empty'
         errorText.classList.remove('d-none');
         searchResult.style.display = "none";
         bookContainer.textContent=''

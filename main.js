@@ -22,7 +22,7 @@ button.addEventListener('click', searchBook = () => {
     fetch(url)
         .then(res => res.json())
         .then((data) => {
-            // Setting a timer of 1.5s, before removing the spinnner, and showing data
+            // Setting a timer of spiner
             setTimeout(() => {
                 spinner.classList.add("d-none");
                 showBook(data);

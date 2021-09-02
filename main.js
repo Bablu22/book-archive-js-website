@@ -38,19 +38,19 @@ const showBook = (books) => {
     if (numFound === 0) {
         errorText.classList.remove('d-none');
         errorText.innerText = 'search result not found'
-
         return
     }
     else {
         errorText.classList.add('d-none')
-        errorText.innerText=''
     }
    
     book.forEach(element => {
+        searchResult.style.display = "block";
         searchResult.innerHTML = `
         Search result found: <span>${book.length}</span> of <span>${numFound}</span>
         
         `
+        // Handaling undefined
         if (!element.author_name) {
             element.author_name='sorry! Author name not found'
         }
@@ -77,12 +77,5 @@ const showBook = (books) => {
         
         `
         bookContainer.appendChild(div);
-
-
     });
-
 }
-
-
-
-

@@ -1,31 +1,66 @@
 const inputFeild = document.getElementById('search-feild');
 const button = document.getElementById('button');
+const searchResult = document.getElementById('search-result');
+const errorText = document.getElementById('error');
+const bookContainer = document.getElementById('book-container');
 
 
 // search button click
 button.addEventListener('click', searchBook = () => {
     const searchText = inputFeild.value;
     inputFeild.value = ''
+    if (searchText === '') {
+        errorText.innerText = 'Input Feild can not empty'
+        errorText.classList.remove('d-none');
+        searchResult.style.display = "none";
+        bookContainer.textContent=''
+        return
+    }
 
     const url = `http://openlibrary.org/search.json?q=${searchText}`
+    spinner.classList.remove("d-none");
     fetch(url)
         .then(res => res.json())
-        .then(data => showBook(data))
-
+        .then((data) => {
+            // Setting a timer of 1.5s, before removing the spinnner, and showing data
+            setTimeout(() => {
+                spinner.classList.add("d-none");
+                showBook(data);
+            }, 1500);
+        })
 })
 
 const showBook = (books) => {
-    const bookContainer = document.getElementById('book-container');
     bookContainer.textContent = '';
     const book = books.docs;
     const numFound = books.numFound;
-    // console.log(books)
+
+    if (numFound === 0) {
+        errorText.classList.remove('d-none');
+        errorText.innerText = 'search result not found'
+
+        return
+    }
+    else {
+        errorText.classList.add('d-none')
+        errorText.innerText=''
+    }
+   
     book.forEach(element => {
-        const searchResult = document.getElementById('search-result');
         searchResult.innerHTML = `
         Search result found: <span>${book.length}</span> of <span>${numFound}</span>
         
         `
+        if (!element.author_name) {
+            element.author_name='sorry! Author name not found'
+        }
+        if (!element.first_publish_year) {
+            element.first_publish_year='sorry! publish year not found'
+        }
+        if (!element.publisher) {
+            element.publisher='sorry! publisher not found'
+        }
+        // show book
         const imageUrl = `https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg`
         const div = document.createElement('div');
         div.classList.add('col');
@@ -36,23 +71,18 @@ const showBook = (books) => {
                    <h5 class="card-title">${element.title}</h5>
                    <p class="card-text">Author Name: ${element.author_name}</p>
                    <p class="card-text">First Publish: ${element.first_publish_year}</p>
+                   <p class="card-text">Publisher: ${element.publisher}</p>
                  </div>
             </div>
         
         `
         bookContainer.appendChild(div);
-        
-
-
 
 
     });
 
 }
 
-const displayImage = () => {
-    const url = `https://covers.openlibrary.org/b/id/%7Bcover_i%7D-M.jpg`
-}
 
 
 
